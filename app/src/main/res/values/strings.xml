@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Attendance Scanner</string>
+    <string name="school_welcome">Welcome to નગર પ્રાથમિક શાળા નં ૨૯\nપુરુષોતમનગર બાકરોલ તા.જી.આણંદ</string>
+    <string name="take_attendance">Take Attendance</string>
+    <string name="view_attendance">View Attendance</string>
+    <string name="reports">Reports</string>
+    <string name="logout">Logout</string>
+    <string name="today">Today</string>
+    <string name="present">હાજર</string>
+    <string name="absent">ગેરહાજર</string>
+    <string name="boys">કુમાર</string>
+    <string name="girls">કન્યા</string>
+    <string name="total_count">કુલ સંખ્યા</string>
+    <string name="present_students_report">3/1 Present Students Report</string>
+    <string name="absent_students_report">3/2 Absent Students Report</string>
+    <string name="login_title">શિક્ષક લોગઈન (Teacher Login)</string>
+    <string name="username">વપરાશકર્તા નામ (Username)</string>
+    <string name="password">પાસવર્ડ (Password)</string>
+    <string name="login_button">લોગઈન કરો (Login)</string>
+    <string name="manage_database">વિદ્યાર્થી ડેટાબેઝ (Student Database)</string>
+</resources>

@@ -1,0 +1,6 @@
+{
+  "name": "Attendance Scanner",
+  "description": "School Attendance Scanner with QR code verification, student tracking, and Gujarati attendance reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
