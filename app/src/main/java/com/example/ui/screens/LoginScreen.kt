@@ -87,14 +87,13 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // School Emblem
-            Image(
-                painter = painterResource(id = R.drawable.ic_school_logo),
-                contentDescription = "School Logo",
-                modifier = Modifier.size(110.dp)
+            // School Emblem Badge
+            com.example.ui.components.SchoolLogoBadge(
+                size = 110.dp,
+                showDetails = true
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
             Text(
                 text = "Attendance Scanner",

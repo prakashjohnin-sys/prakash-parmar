@@ -211,7 +211,7 @@ fun TakeAttendanceScreen(
         ) {
             // Standard / Class Selection
             StandardSelectorDropdown(
-                standards = listOf("તમામ ધોરણ") + allStandards,
+                standards = listOf("તમામ ધોરણ") + com.example.data.model.SchoolStandards.ALL,
                 selected = selectedStandard,
                 onSelected = { viewModel.setSelectedStandard(it) }
             )

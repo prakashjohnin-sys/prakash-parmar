@@ -1,100 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="120dp"
-    android:height="120dp"
-    android:viewportWidth="120"
-    android:viewportHeight="120">
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
 
-    <!-- Outer Decorative Glow/Circle -->
+    <!-- Outer Shadow Ring -->
     <path
-        android:fillColor="#FFF8E1"
-        android:pathData="M60,60 m-56,0 a56,56 0 1,0 112,0 a56,56 0 1,0 -112,0" />
+        android:fillColor="#1A000000"
+        android:pathData="M100,100 m-98,0 a98,98 0 1,0 196,0 a98,98 0 1,0 -196,0" />
 
-    <!-- Outer Gold Border -->
+    <!-- Red Circular Ring (Nagar Prathmik Shikshan Samiti Anand) -->
     <path
-        android:strokeColor="#F57C00"
+        android:fillColor="#BA1B1D"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M100,100 m-94,0 a94,94 0 1,0 188,0 a94,94 0 1,0 -188,0" />
+
+    <!-- Inner Gold Ring Border -->
+    <path
+        android:strokeColor="#FFD54F"
         android:strokeWidth="2.5"
         android:fillColor="#FFFFFF"
-        android:pathData="M60,60 m-50,0 a50,50 0 1,0 100,0 a50,50 0 1,0 -100,0" />
+        android:pathData="M100,100 m-68,0 a68,68 0 1,0 136,0 a68,68 0 1,0 -136,0" />
 
-    <!-- Rays / Divine Halo -->
+    <!-- Dotted Circular Bead Border on Gold Ring -->
+    <path
+        android:strokeColor="#C62828"
+        android:strokeWidth="1"
+        android:pathData="M100,100 m-65,0 a65,65 0 1,0 130,0 a65,65 0 1,0 -130,0" />
+
+    <!-- Sacred Golden Radiant Aura Rays -->
+    <path
+        android:strokeColor="#FFE082"
+        android:strokeWidth="1.2"
+        android:pathData="
+            M100,38 L100,48
+            M70,46 L78,54
+            M130,46 L122,54
+            M48,76 L58,80
+            M152,76 L142,80
+            M48,110 L58,106
+            M152,110 L142,106
+        " />
+
+    <!-- Soft Divine Halo behind Saraswati -->
+    <path
+        android:fillColor="#FFF9C4"
+        android:pathData="M100,75 m-26,0 a26,26 0 1,0 52,0 a26,26 0 1,0 -52,0" />
+
+    <!-- Peacock (મોર - વાહન) Silhouette Left -->
+    <path
+        android:fillColor="#00695C"
+        android:pathData="M72,108 C64,104 62,94 65,86 C67,82 72,86 74,90 C75,93 74,98 76,104 Z" />
+    <path
+        android:fillColor="#00897B"
+        android:pathData="M66,88 C62,80 68,75 70,78 C70,82 66,85 66,88 Z" />
+    <!-- Peacock Crown Feathers -->
+    <path
+        android:fillColor="#26A69A"
+        android:pathData="M68,76 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0 M64,78 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0" />
+
+    <!-- Lotus Petals (ગુલાબી કમળ આસન) -->
+    <!-- Outer Lotus Petals -->
+    <path
+        android:fillColor="#F48FB1"
+        android:pathData="M100,126 C82,126 70,118 64,112 C74,122 86,130 100,130 C114,130 126,122 136,112 C130,118 118,126 100,126 Z" />
+    <path
+        android:fillColor="#F06292"
+        android:pathData="M80,116 C90,124 100,126 100,126 C100,126 110,124 120,116 C112,120 100,122 100,122 C100,122 88,120 80,116 Z" />
+    <!-- Center Blooming Lotus Petal -->
+    <path
+        android:fillColor="#EC407A"
+        android:pathData="M92,122 C96,125 100,127 100,127 C100,127 104,125 108,122 C104,123 100,124 100,124 C100,124 96,123 92,122 Z" />
+
+    <!-- Seated Saraswati Maa (શ્વેત વસ્ત્રાન્વિતા - White & Golden Attire) -->
+    <!-- White Robe Base -->
+    <path
+        android:fillColor="#FAFAFA"
+        android:strokeColor="#E0E0E0"
+        android:strokeWidth="1"
+        android:pathData="M82,118 C82,106 90,100 100,100 C110,100 118,106 118,118 C112,122 88,122 82,118 Z" />
+
+    <!-- Torso and Shawl -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFD54F"
+        android:strokeWidth="1"
+        android:pathData="M92,84 L108,84 L112,104 L88,104 Z" />
+    <!-- Golden Border across chest (ઓઢણી) -->
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="2"
+        android:pathData="M90,88 L110,102" />
+
+    <!-- Divine Face & Crown (મુગટ) -->
+    <!-- Face -->
+    <path
+        android:fillColor="#FFE0B2"
+        android:pathData="M100,74 m-6,0 a6,7 0 1,0 12,0 a6,7 0 1,0 -12,0" />
+    <!-- Golden Mukut / Crown -->
+    <path
+        android:fillColor="#FFB300"
+        android:strokeColor="#FFA000"
+        android:strokeWidth="0.8"
+        android:pathData="M92,68 L100,56 L108,68 L104,70 L96,70 Z" />
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M97,63 L100,58 L103,63 Z" />
+
+    <!-- Sacred Veena (વીણા) -->
+    <!-- Veena Board / Stem -->
+    <path
+        android:strokeColor="#6D4C41"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M80,114 L122,76" />
+    <!-- Veena Strings (Golden) -->
+    <path
+        android:strokeColor="#FFE082"
+        android:strokeWidth="1"
+        android:pathData="M82,112 L120,77" />
+    <!-- Veena Lower Gourd (તુંબડું) -->
+    <path
+        android:fillColor="#BF360C"
+        android:pathData="M82,110 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0" />
+    <!-- Veena Upper Pegs / Gourd -->
+    <path
+        android:fillColor="#D84315"
+        android:pathData="M116,80 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+
+    <!-- Sacred Book (પુસ્તક - વેદ) -->
+    <path
+        android:fillColor="#FFF9C4"
+        android:strokeColor="#A1887F"
+        android:strokeWidth="1"
+        android:pathData="M114,96 L124,94 L124,102 L114,104 Z" />
+
+    <!-- Red Hibiscus Flower (જાસૂદ પુષ્પ) at center base -->
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M100,128 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M100,128 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+    <!-- Blue School Ribbon Banner (સા વિદ્યા યા વિમુક્તયે) -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M48,136 L152,136 L144,148 L100,144 L56,148 Z" />
     <path
         android:strokeColor="#FFD54F"
         android:strokeWidth="1.2"
-        android:pathData="M60,15 L60,25 M28,28 L35,35 M15,60 L25,60 M105,60 L95,60 M92,28 L85,35 M60,15" />
-
-    <!-- Saraswati Lotus Petals -->
-    <!-- Pink Lotus Base -->
-    <path
-        android:fillColor="#F48FB1"
-        android:pathData="M60,82 C50,82 42,75 38,72 C45,78 52,85 60,85 C68,85 75,78 82,72 C78,75 70,82 60,82 Z" />
-    <path
-        android:fillColor="#EC407A"
-        android:pathData="M48,72 C54,76 60,80 60,80 C60,80 66,76 72,72 C66,75 60,76 60,76 C60,76 54,75 48,72 Z" />
-
-    <!-- Veena Instrument Silhouette -->
-    <path
-        android:strokeColor="#8D6E63"
-        android:strokeWidth="3"
-        android:strokeLineCap="round"
-        android:pathData="M42,72 L78,38" />
-    <!-- Veena Gourds -->
-    <path
-        android:fillColor="#D84315"
-        android:pathData="M44,70 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0" />
-    <path
-        android:fillColor="#E64A19"
-        android:pathData="M72,42 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
-
-    <!-- Sacred Book / Veda Gyan -->
-    <path
-        android:fillColor="#FFF9C4"
-        android:strokeColor="#BCAAA4"
-        android:strokeWidth="1"
-        android:pathData="M52,62 L60,59 L68,62 L68,69 L60,66 L52,69 Z" />
-
-    <!-- Maa Saraswati Seated Form / Crown Motif -->
-    <!-- Golden Mukut / Crown -->
-    <path
-        android:fillColor="#FFA000"
-        android:pathData="M56,36 L60,30 L64,36 L62,38 L58,38 Z" />
-    <!-- White Dress / Hansa Vahini Aura -->
-    <path
-        android:fillColor="#0288D1"
-        android:pathData="M60,40 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
-    <path
-        android:fillColor="#E0F7FA"
-        android:strokeColor="#81D4FA"
-        android:strokeWidth="1"
-        android:pathData="M54,48 C54,44 66,44 66,48 L70,62 C68,64 52,64 50,62 Z" />
-
-    <!-- Lower Ribbon with Gujarat School Motto -->
-    <!-- Curved Ribbon Banner -->
-    <path
-        android:fillColor="#1565C0"
-        android:pathData="M22,90 L98,90 L92,102 L60,98 L28,102 Z" />
-    <path
-        android:strokeColor="#FFC107"
-        android:strokeWidth="1.5"
         android:fillColor="#0D47A1"
-        android:pathData="M24,91 L96,91 L91,100 L60,97 L29,100 Z" />
+        android:pathData="M50,137 L150,137 L143,146 L100,143 L57,146 Z" />
 
-    <!-- Ribbon text lines / star motifs -->
+    <!-- Ribbon Fold Ends Left & Right -->
+    <path
+        android:fillColor="#0A387E"
+        android:pathData="M48,136 L42,143 L48,146 Z M152,136 L158,143 L152,146 Z" />
+
+    <!-- White Motto Text lines on ribbon -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M34,94 h52 v1.5 h-52 z M40,97 h40 v1.2 h-40 z" />
+        android:pathData="M65,140 h70 v1.8 h-70 z" />
 
-    <!-- Side Tricolor Floral Wreath -->
+    <!-- Bottom U-DISE Code Badge / Plaque -->
     <path
-        android:fillColor="#FF9800"
-        android:pathData="M24,56 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#BA1B1D"
+        android:strokeWidth="0.8"
+        android:pathData="M60,151 h80 v10 h-80 z" />
     <path
-        android:fillColor="#4CAF50"
-        android:pathData="M90,56 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        android:fillColor="#BA1B1D"
+        android:pathData="M70,154 h60 v1.2 h-60 z M76,157 h48 v1.2 h-48 z" />
+
+    <!-- Star Badges on Red Ring -->
+    <!-- Left Star -->
     <path
-        android:fillColor="#E91E63"
-        android:pathData="M28,68 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        android:fillColor="#FFD54F"
+        android:pathData="M16,100 L18,97 L20,100 L23,100 L21,102 L22,105 L19,103 L16,105 L17,102 L15,100 Z" />
+    <!-- Right Star -->
     <path
-        android:fillColor="#E91E63"
-        android:pathData="M86,68 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        android:fillColor="#FFD54F"
+        android:pathData="M184,100 L186,97 L188,100 L191,100 L189,102 L190,105 L187,103 L184,105 L185,102 L183,100 Z" />
+
 </vector>

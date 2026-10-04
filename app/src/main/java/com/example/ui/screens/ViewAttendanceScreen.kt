@@ -179,7 +179,7 @@ fun ViewAttendanceScreen(
                 // Standard Selector
                 Box(modifier = Modifier.weight(1f)) {
                     StandardSelectorDropdown(
-                        standards = listOf("તમામ ધોરણ") + allStandards,
+                        standards = listOf("તમામ ધોરણ") + com.example.data.model.SchoolStandards.ALL,
                         selected = selectedStandard,
                         onSelected = { viewModel.setSelectedStandard(it) }
                     )
@@ -322,101 +322,160 @@ fun StudentAttendanceItem(
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(12.dp)
         ) {
-            // Roll No Badge
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .background(if (student.isKumar) Color(0xFFE3F2FD) else Color(0xFFFCE4EC)),
-                contentAlignment = Alignment.Center
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "${student.rollNo}",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = if (student.isKumar) BoyBlue else GirlPink
-                )
-            }
+                // Roll No Badge
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .background(if (student.isKumar) Color(0xFFE3F2FD) else Color(0xFFFCE4EC)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "${student.rollNo}",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (student.isKumar) BoyBlue else GirlPink
+                    )
+                }
 
-            Spacer(modifier = Modifier.width(12.dp))
+                Spacer(modifier = Modifier.width(12.dp))
 
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = student.name,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = TextPrimaryLight
-                )
-                Spacer(modifier = Modifier.height(2.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = student.name,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = TextPrimaryLight
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "GR: ${student.grNo}",
+                            fontSize = 12.sp,
+                            color = TextSecondaryLight
+                        )
+                        Text(
+                            text = "•",
+                            fontSize = 12.sp,
+                            color = TextSecondaryLight
+                        )
+                        Text(
+                            text = student.standard,
+                            fontSize = 12.sp,
+                            color = TextSecondaryLight
+                        )
+                        Text(
+                            text = "•",
+                            fontSize = 12.sp,
+                            color = TextSecondaryLight
+                        )
+                        Text(
+                            text = if (student.isKumar) "કુમાર" else "કન્યા",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = if (student.isKumar) BoyBlue else GirlPink
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                // Present / Absent Badge + Toggle Switch
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = "GR: ${student.grNo}",
-                        fontSize = 12.sp,
-                        color = TextSecondaryLight
-                    )
-                    Text(
-                        text = "•",
-                        fontSize = 12.sp,
-                        color = TextSecondaryLight
-                    )
-                    Text(
-                        text = student.standard,
-                        fontSize = 12.sp,
-                        color = TextSecondaryLight
-                    )
-                    Text(
-                        text = "•",
-                        fontSize = 12.sp,
-                        color = TextSecondaryLight
-                    )
-                    Text(
-                        text = if (student.isKumar) "કુમાર" else "કન્યા",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = if (student.isKumar) BoyBlue else GirlPink
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (isPresent) PresentGreenBg else AbsentRedBg
+                    ) {
+                        Text(
+                            text = if (isPresent) "હાજર" else "ગેરહાજર",
+                            color = if (isPresent) PresentGreen else AbsentRed,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                        )
+                    }
+
+                    Switch(
+                        checked = isPresent,
+                        onCheckedChange = { onToggle() },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = PresentGreen,
+                            checkedTrackColor = PresentGreenBg,
+                            uncheckedThumbColor = AbsentRed,
+                            uncheckedTrackColor = AbsentRedBg
+                        )
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
-
-            // Present / Absent Badge + Toggle Switch
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = if (isPresent) PresentGreenBg else AbsentRedBg
+            // Quick parent notification button if absent
+            if (!isPresent && student.parentPhone.isNotBlank()) {
+                val context = androidx.compose.ui.platform.LocalContext.current
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFFF1F5F9), RoundedCornerShape(6.dp))
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = if (isPresent) "હાજર" else "ગેરહાજર",
-                        color = if (isPresent) PresentGreen else AbsentRed,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                        text = "મો: ${student.parentPhone}",
+                        fontSize = 11.sp,
+                        color = Color(0xFF0F766E),
+                        fontWeight = FontWeight.Medium
                     )
-                }
 
-                Switch(
-                    checked = isPresent,
-                    onCheckedChange = { onToggle() },
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = PresentGreen,
-                        checkedTrackColor = PresentGreenBg,
-                        uncheckedThumbColor = AbsentRed,
-                        uncheckedTrackColor = AbsentRedBg
-                    )
-                )
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(
+                            text = "WhatsApp",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF16A34A),
+                            modifier = Modifier.clickable {
+                                val msg = com.example.util.CommunicationUtil.createAbsentMessage(
+                                    studentName = student.name,
+                                    standard = student.standard,
+                                    rollNo = student.rollNo,
+                                    date = "આજે"
+                                )
+                                com.example.util.CommunicationUtil.sendWhatsApp(context, student.parentPhone, msg)
+                            }
+                        )
+
+                        Text(
+                            text = "SMS",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = SchoolPrimary,
+                            modifier = Modifier.clickable {
+                                val msg = com.example.util.CommunicationUtil.createAbsentMessage(
+                                    studentName = student.name,
+                                    standard = student.standard,
+                                    rollNo = student.rollNo,
+                                    date = "આજે"
+                                )
+                                com.example.util.CommunicationUtil.sendSms(context, student.parentPhone, msg)
+                            }
+                        )
+                    }
+                }
             }
         }
     }

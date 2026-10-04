@@ -23,6 +23,12 @@ interface StudentDao {
     @Query("SELECT COUNT(*) FROM students")
     fun getStudentCount(): Flow<Int>
 
+    @Query("SELECT COUNT(*) FROM students")
+    suspend fun getDirectStudentCount(): Int
+
+    @Query("DELETE FROM students")
+    suspend fun clearAllStudents()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudent(student: Student): Long
 

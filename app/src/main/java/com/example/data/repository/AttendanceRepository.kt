@@ -16,7 +16,12 @@ class AttendanceRepository(
     private val attendanceDao: AttendanceDao
 ) {
     val allStudents: Flow<List<Student>> = studentDao.getAllStudents()
-    val allStandards: Flow<List<String>> = studentDao.getAllStandards()
+    val allStandards: Flow<List<String>> = kotlinx.coroutines.flow.flow {
+        studentDao.getAllStandards().collect { dbStandards ->
+            val combined = (com.example.data.model.SchoolStandards.ALL + dbStandards).distinct()
+            emit(combined)
+        }
+    }
     val totalStudentsCount: Flow<Int> = studentDao.getStudentCount()
 
     fun getAttendanceForDate(date: String): Flow<List<AttendanceRecord>> =
@@ -120,7 +125,15 @@ class AttendanceRepository(
         studentDao.deleteStudent(student)
     }
 
+    suspend fun importStudents(students: List<Student>, replaceExisting: Boolean) {
+        if (replaceExisting) {
+            studentDao.clearAllStudents()
+        }
+        studentDao.insertStudents(students)
+    }
+
     suspend fun resetSampleData() {
+        studentDao.clearAllStudents()
         AppDatabase.populateInitialStudents(studentDao)
     }
 

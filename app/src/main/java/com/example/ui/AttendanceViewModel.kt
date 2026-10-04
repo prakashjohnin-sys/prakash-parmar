@@ -211,6 +211,43 @@ class AttendanceViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    fun parseStudentsFromUri(uri: android.net.Uri, onResult: (Result<List<Student>>) -> Unit) {
+        val context = getApplication<Application>()
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+            val result = com.example.util.ExcelStudentImporter.parseStudentsFromUri(context, uri)
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+                onResult(result)
+            }
+        }
+    }
+
+    fun parseStudentsFromText(text: String, onResult: (Result<List<Student>>) -> Unit) {
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+            val result = com.example.util.ExcelStudentImporter.parseStudentsFromText(text)
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+                onResult(result)
+            }
+        }
+    }
+
+    fun saveImportedStudents(students: List<Student>, replaceExisting: Boolean) {
+        viewModelScope.launch {
+            repository.importStudents(students, replaceExisting)
+            _scanMessage.emit("${students.size} વિદ્યાર્થીઓ કાયમી સેવ થઈ ગયા છે!")
+        }
+    }
+
+    fun shareTemplateCsv(context: Context) {
+        val template = com.example.util.ExcelStudentImporter.generateTemplateCsv()
+        com.example.util.ExcelStudentImporter.shareCsvFile(context, template, "shala29_students_template.csv")
+    }
+
+    fun exportCurrentStudentsCsv(context: Context) {
+        val students = allStudents.value
+        val csv = com.example.util.ExcelStudentImporter.exportStudentsToCsv(students)
+        com.example.util.ExcelStudentImporter.shareCsvFile(context, csv, "shala29_students_list.csv")
+    }
+
     fun clearRecentlyScanned() {
         _recentlyScannedStudent.value = null
     }
